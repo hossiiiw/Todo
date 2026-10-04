@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+:root {
+  --app-background: #f6f5f0;
+  --app-surface: #111815;
+  --app-surface-hover: #eef3ef;
+
+  --app-primary: #9ba8a1;
+  /* --app-primary: #087f5b; */
+  --app-primary-hover: #066b4d;
+
+  --app-text: #17211c;
+  --app-muted: #66736c;
+  --app-border: #dde5df;
+
+  --app-success: #16805b;
+  --app-danger: #d6455d;
+  --app-warning: #b7791f;
+
+  --app-accent: #f5c76b;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+html.dark {
+  --app-background: #0b0f0d;
+  --app-surface: #ffffff;
+
+  --app-surface-hover: #18221d;
+
+  /* --app-primary: #2dd4a8; */
+  --app-primary: #9ba8a1;
+  --app-primary-hover: #20b890;
+
+  --app-text: #f5f5f0;
+  --app-muted: #9ba8a1;
+  --app-border: #26352e;
+
+  --app-success: #4ade80;
+  --app-danger: #fb7185;
+  --app-warning: #f5c76b;
+
+  --app-accent: #f5c76b;
+}
+
+/* =========================
+   TAILWIND THEME
+========================= */
+
+@theme {
+  --color-app-background: var(--app-background);
+  --color-app-surface: var(--app-surface);
+  --color-app-surface-hover: var(--app-surface-hover);
+
+  --color-app-primary: var(--app-primary);
+  --color-app-primary-hover: var(--app-primary-hover);
+
+  --color-app-text: var(--app-text);
+  --color-app-muted: var(--app-muted);
+  --color-app-border: var(--app-border);
+
+  --color-app-success: var(--app-success);
+  --color-app-danger: var(--app-danger);
+  --color-app-warning: var(--app-warning);
+
+  --color-app-accent: var(--app-accent);
+}
