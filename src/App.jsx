@@ -3,6 +3,7 @@ import Date from "./components/Date";
 import Header from "./components/Header";
 import TaskManager from "./components/TaskManager";
 import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Header />
         <Date />
         <TaskManager />
-        <TodoForm/>
+        <TodoForm />
+        <TodoList />
       </main>
     </>
   );
