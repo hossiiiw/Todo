@@ -18,7 +18,7 @@ function TodoItem() {
           </div>
           <p className="text-app-surface">مهر 1405</p>
         </div>
-        <input type="checkbox" className={language === "FA" ? "" : ""} />
+        <input type="checkbox" className={language === "FA" ? "mr-4" : ""} />
       </div>
       <div className="flex gap-4">
         <span className="hover:bg-app-danger rounded-[10px] cursor-pointer p-1">
