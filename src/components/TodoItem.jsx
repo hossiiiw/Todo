@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/ProjectContext";
 
 function TodoItem() {
+  const { language } = useContext(AppContext);
   return (
     <div className="w-full bg-app-border  flex flex-row-reverse items-center justify-between p-4 rounded-xl">
       <div className="flex items-center">
@@ -16,7 +18,7 @@ function TodoItem() {
           </div>
           <p className="text-app-surface">مهر 1405</p>
         </div>
-        <input type="checkbox" />
+        <input type="checkbox" className={language === "FA" ? "" : ""} />
       </div>
       <div className="flex gap-4">
         <span className="hover:bg-app-danger rounded-[10px] cursor-pointer p-1">

@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { AppContext } from "../context/ProjectContext";
 
 function Header() {
-  const { theme, ToggleTheme } = useContext(AppContext);
+  const { theme, language, ToggleTheme, ToggleLanguage } =
+    useContext(AppContext);
   return (
     <div className="w-full rounded-xl bg-app-primary p-3 text-app-surface font-bold flex items-center justify-between">
       <div>
@@ -24,9 +25,15 @@ function Header() {
               <path d="m9 11 3 3L22 4" />
             </svg>
           </span>
-          <p>TodoList</p>
+          <p>TaskFlow</p>
         </div>
-        <p className="text-[15px] font-normal">Smart task management</p>
+        <p className="text-[15px] font-normal">
+          {language === "FA" ? (
+            <p>مدیریت هوشمند کارها</p>
+          ) : (
+            <p>Smart task management</p>
+          )}
+        </p>
       </div>
       <div className="flex items-center gap-2">
         <button onClick={ToggleTheme} className="cursor-pointer">
@@ -62,7 +69,12 @@ function Header() {
             </svg>
           )}
         </button>
-        <button className="cursor-pointer bg-app-border p-1 pl-2 pr-2 rounded-2xl">EN 🌐</button>
+        <button
+          onClick={ToggleLanguage}
+          className="cursor-pointer bg-app-border p-1 pl-2 pr-2 rounded-2xl"
+        >
+          {language === "FA" ? <p>EN 🌐</p> : <p> FA 🌐 </p>}
+        </button>
       </div>
     </div>
   );
