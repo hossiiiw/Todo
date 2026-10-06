@@ -2,19 +2,19 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/ProjectContext";
 
 function TaskManager() {
-  const { language } = useContext(AppContext);
+  const { language, data  ,completTodo } = useContext(AppContext);
   return (
     <div className="w-full flex items-center justify-between gap-4">
       <div className="text-app-surface w-full flex flex-col gap-1 mt-4 border-2 border-app-border p-3 rounded-xl">
         <span>📋</span>
-        <p className="text-2xl font-bold">0</p>
+        <p className="text-2xl font-bold">{data?.length}</p>
         <span className="text-app-muted">
           {language === "FA" ? "کل کار ها" : "Total tasks"}
         </span>
       </div>
       <div className="text-app-surface w-full flex flex-col gap-1 mt-4 border-2 border-app-border p-3 rounded-xl">
         <span>⏳</span>
-        <p className="text-2xl font-bold">0</p>
+        <p className="text-2xl font-bold">{data?.length}</p>
         <span className="text-app-muted">
           {language === "FA" ? " در حال انجام" : " Active"}
         </span>
@@ -22,7 +22,7 @@ function TaskManager() {
 
       <div className="text-app-surface w-full flex flex-col gap-1 mt-4 border-2 border-app-border p-3 rounded-xl">
         <span>✓</span>
-        <p className="text-2xl font-bold">0</p>
+        <p className="text-2xl font-bold">{completTodo}</p>
         <span className="text-app-muted">
           {language === "FA" ? "انجام‌شده " : " Complete"}
         </span>

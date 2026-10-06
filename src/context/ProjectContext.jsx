@@ -19,7 +19,8 @@ function AppContextProvider({ children }) {
     return savedData ? JSON.parse(savedData) : [];
   });
 
-  // toggle language func
+  const [completTodo, setCompleteTodo] = useState();
+  // -------------------toggle language func--------------------
   const ToggleLanguage = () => {
     setLanguage((prev) => {
       const newLanguage = prev === "FA" ? "EN" : "FA";
@@ -32,9 +33,9 @@ function AppContextProvider({ children }) {
   useEffect(() => {
     document.documentElement.dir = language === "FA" ? "rtl" : "ltr";
   }, [language]);
-  // toggle language func
+  // -------------------end toggle language func--------------------
 
-  // Toggle theme func
+  // --------------------Toggle theme func----------------------
   const ToggleTheme = () => {
     setTheme((prev) => {
       const newTheme = prev === "light" ? "dark" : "light";
@@ -48,9 +49,9 @@ function AppContextProvider({ children }) {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
-  // Toggle theme func
+  // --------------------end Toggle theme func----------------------
 
-  // date func
+  // --------------------------date func--------------------------
   const getDate = async () => {
     try {
       const response = await axios
@@ -68,10 +69,9 @@ function AppContextProvider({ children }) {
   useEffect(() => {
     getDate();
   }, []);
-  // date func
+  // --------------------------end date func--------------------------
 
-  // data func
-
+  // -----------------------data func------------------------------
   const getData = (newData) => {
     setData([...data, newData]);
     localStorage.setItem("todos", JSON.stringify(data));
@@ -80,7 +80,28 @@ function AppContextProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(data));
   }, [data]);
-  // data func
+  // -----------------------end data func------------------------------
+
+  // -------------update status -----------------------------
+  const getTodoStatus = (id) => {
+    setData((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, complete: !todo.complete } : todo,
+      ),
+    );
+  };
+  // -------------update status -----------------------------
+
+  // -----------------Todo completed---------------------------
+  const countTodoCompleted = () => {
+    const count = data.filter((todo) => todo.complete).length;
+    setCompleteTodo(count);
+  };
+
+  useEffect(() => {
+    countTodoCompleted();
+  }, [data]);
+  // -----------------Todo completed---------------------------
 
   const deleteAllTodos = () => {
     setData([]);
@@ -94,10 +115,12 @@ function AppContextProvider({ children }) {
         date,
         language,
         data,
+        completTodo,
         ToggleTheme,
         ToggleLanguage,
         getData,
         deleteAllTodos,
+        getTodoStatus,
       }}
     >
       {children}

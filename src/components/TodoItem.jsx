@@ -1,8 +1,18 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/ProjectContext";
 
-function TodoItem({ id, name, priority, type, date, month, time, weekday }) {
-  const { language } = useContext(AppContext);
+function TodoItem({
+  id,
+  name,
+  priority,
+  complete,
+  type,
+  date,
+  month,
+  time,
+  weekday,
+}) {
+  const { language, getTodoStatus } = useContext(AppContext);
   return (
     <div className="w-full bg-app-border  flex flex-row-reverse items-center justify-between p-4 rounded-xl">
       <div className="flex items-center">
@@ -16,11 +26,20 @@ function TodoItem({ id, name, priority, type, date, month, time, weekday }) {
             </p>
             <p className="font-bold text-app-surface">{name}</p>
           </div>
-          <p className="text-app-surface"> 
+          <p className="text-app-surface">
             {date} | {month} | {weekday} |{time}
           </p>
         </div>
-        <input type="checkbox" className={language === "FA" ? "mr-4" : ""} />
+        <input
+          type="checkbox"
+          checked={complete}
+          onChange={(e) => {
+            const value = e.target.checked;
+            getTodoStatus(id, e.target.checked);
+            console.log(value);
+          }}
+          className={language === "FA" ? "mr-4" : ""}
+        />
       </div>
       <div className="flex gap-4">
         <span className="hover:bg-app-danger rounded-[10px] cursor-pointer p-1">
