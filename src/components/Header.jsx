@@ -27,13 +27,13 @@ function Header() {
           </span>
           <p>TaskFlow</p>
         </div>
-        <p className="text-[15px] font-normal">
+        <div className="text-[15px] font-normal">
           {language === "FA" ? (
             <p>مدیریت هوشمند کارها</p>
           ) : (
             <p>Smart task management</p>
           )}
-        </p>
+        </div>
       </div>
       <div className="flex items-center gap-2">
         <button onClick={ToggleTheme} className="cursor-pointer">

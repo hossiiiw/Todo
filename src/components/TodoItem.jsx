@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/ProjectContext";
 
-function TodoItem() {
+function TodoItem({ id, name, priority, type, date, month, time, weekday }) {
   const { language } = useContext(AppContext);
   return (
     <div className="w-full bg-app-border  flex flex-row-reverse items-center justify-between p-4 rounded-xl">
@@ -9,14 +9,16 @@ function TodoItem() {
         <div className="flex flex-col items-end gap-2 mr-4">
           <div className="w-full flex items-center justify-between gap-2">
             <p className="bg-white text-[12px] rounded-2xl p-1 pl-2 pr-2">
-              کار💼
+              {type}
             </p>
             <p className="bg-white text-[12px] rounded-2xl p-1 pl-2 pr-2">
-              متوسط
+              {priority}
             </p>
-            <p className="font-bold text-app-surface">Todo</p>
+            <p className="font-bold text-app-surface">{name}</p>
           </div>
-          <p className="text-app-surface">مهر 1405</p>
+          <p className="text-app-surface"> 
+            {date} | {month} | {weekday} |{time}
+          </p>
         </div>
         <input type="checkbox" className={language === "FA" ? "mr-4" : ""} />
       </div>

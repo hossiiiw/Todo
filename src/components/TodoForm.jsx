@@ -1,8 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/ProjectContext";
+import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 
 function TodoForm() {
-  const { language } = useContext(AppContext);
+  const { language, date, getData } = useContext(AppContext);
+  const { register, handleSubmit, reset } = useForm();
+  const [todo, setTodo] = useState({});
+
+  const onSubmitForm = (data) => {
+    const newTodo = {
+      id: uuidv4(),
+      ...data,
+      complete: false,
+      day: date.date,
+      month: date.monthName,
+      weekday: date.weekday,
+      time: date.time,
+    };
+
+    getData(newTodo);
+    reset();
+    return newTodo;
+  };
+
   return (
     <div className="flex flex-col items-end gap-3 mt-4 p-3 border-2 border-app-border rounded-xl ">
       <div className="w-full ">
@@ -17,18 +38,21 @@ function TodoForm() {
         </span>
       </div>
 
-      <form className="w-full flex items-center gap-2">
+      <form
+        onSubmit={handleSubmit(onSubmitForm)}
+        className="w-full flex items-center gap-2"
+      >
         <input
           placeholder={
             language === "FA" ? "مثلا مطالعه React" : "e.g Study React"
           }
+          {...register("Todo", { required: true })}
           className="w-[50%] placeholder:text-app-primary-hover  text-app-surface outline-none border-2 border-app-border rounded-xl p-3"
         />
-        <div className="border-2 border-app-border rounded-xl p-3 text-app-surface">
-          1405/01/10
-        </div>
-
-        <select className="border-2 border-app-border rounded-xl p-3 text-app-surface bg-app-background text-[15px]">
+        <select
+          {...register("Priority")}
+          className="border-2 border-app-border rounded-xl p-3 text-app-surface bg-app-background text-[15px]"
+        >
           <option>{language === "FA" ? "اولویت کم" : "Low priority"}</option>
           <option>
             {language === "FA" ? "اولویت متوسط" : "Medium  priority"}
@@ -37,14 +61,15 @@ function TodoForm() {
             {language === "FA" ? "اولویت بالا" : "High  priority"}
           </option>
         </select>
-
-        <select className="border-2 border-app-border rounded-xl p-3 text-app-surface bg-app-background text-[15px]">
+        <select
+          {...register("Type")}
+          className="border-2 border-app-border rounded-xl p-3 text-app-surface bg-app-background text-[15px]"
+        >
           <option>{language === "FA" ? " 💼کار" : "Work 💼 "}</option>
           <option>{language === "FA" ? "👤 شخصی" : "Personal 👤"}</option>
           <option>{language === "FA" ? "📚 مطالعه" : "Study 📚"}</option>
           <option>{language === "FA" ? "🏃 سلامتی" : "Healthy 🏃"}</option>
         </select>
-
         <button
           type="submit"
           className="w-[18%] font-bold text-white bg-violet-600 hover:bg-violet-700 p-3 rounded-xl cursor-pointer"
