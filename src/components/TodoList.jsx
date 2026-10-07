@@ -1,9 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import TodoItem from "./TodoItem";
 import { AppContext } from "../context/ProjectContext";
+import EditModal from "./EditModal";
 
 function TodoList() {
   const { language, data, deleteAllTodos } = useContext(AppContext);
+  const [selectedTodo, setSelectedTodo] = useState(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
+  const handleEdit = (id) => {
+    const todo = data.find((item) => item.id === id);
+    setSelectedTodo(todo);
+    setIsEditOpen(true);
+  };
 
   return (
     <>
@@ -41,10 +50,14 @@ function TodoList() {
               month={item.month}
               time={item.time}
               weekday={item.weekday}
+              onEdit={handleEdit}
             />
           );
         })}
       </div>
+      {isEditOpen && (
+        <EditModal todo={selectedTodo} onClose={() => setIsEditOpen(false)} />
+      )}
     </>
   );
 }

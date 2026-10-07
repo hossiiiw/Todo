@@ -116,6 +116,16 @@ function AppContextProvider({ children }) {
 
   // -----------------Delete todo--------------------------
 
+  // ------------------Edit Todo-------------------------
+
+  const editTodo = (id, updatedData) => {
+    setData((prev) =>
+      prev.map((todo) => (todo.id === id ? { ...todo, ...updatedData } : todo)),
+    );
+  };
+
+  // ------------------Edit Todo-------------------------
+
   return (
     <AppContext.Provider
       value={{
@@ -130,6 +140,7 @@ function AppContextProvider({ children }) {
         deleteAllTodos,
         getTodoStatus,
         deleteTodo,
+        editTodo,
       }}
     >
       {children}
