@@ -12,7 +12,7 @@ function TodoItem({
   time,
   weekday,
 }) {
-  const { language, getTodoStatus } = useContext(AppContext);
+  const { language, getTodoStatus, deleteTodo } = useContext(AppContext);
   return (
     <div className="w-full bg-app-border  flex flex-row-reverse items-center justify-between p-4 rounded-xl">
       <div className="flex items-center">
@@ -42,7 +42,10 @@ function TodoItem({
         />
       </div>
       <div className="flex gap-4">
-        <span className="hover:bg-app-danger rounded-[10px] cursor-pointer p-1">
+        <span
+          onClick={() => deleteTodo(id)}
+          className="hover:bg-app-danger rounded-[10px] cursor-pointer p-1"
+        >
           🗑️
         </span>
         <span className="hover:bg-app-primary rounded-[10px] cursor-pointer p-1">

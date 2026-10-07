@@ -102,11 +102,19 @@ function AppContextProvider({ children }) {
     countTodoCompleted();
   }, [data]);
   // -----------------Todo completed---------------------------
-
+  // -----------------Delete all todo---------------------
   const deleteAllTodos = () => {
     setData([]);
     localStorage.clear("todos");
   };
+  // -----------------Delete all todo---------------------
+  // -----------------Delete todo--------------------------
+
+  const deleteTodo = (id) => {
+    setData((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  // -----------------Delete todo--------------------------
 
   return (
     <AppContext.Provider
@@ -121,6 +129,7 @@ function AppContextProvider({ children }) {
         getData,
         deleteAllTodos,
         getTodoStatus,
+        deleteTodo,
       }}
     >
       {children}
