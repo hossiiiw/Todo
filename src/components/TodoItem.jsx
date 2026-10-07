@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../context/ProjectContext";
-import EditModal from "./EditModal";
+
 
 function TodoItem({
   id,
@@ -30,8 +30,8 @@ function TodoItem({
               </p>
               <p className="font-bold text-app-surface">{name}</p>
             </div>
-            <p className="text-app-surface">
-              {date} | {month} | {weekday} |{time}
+            <p className="text-app-surface text-[12px] md:text-[15px]">
+              {date} | {month} | {weekday} | {time}
             </p>
           </div>
           <input
@@ -39,7 +39,7 @@ function TodoItem({
             checked={complete}
             onChange={(e) => {
               const value = e.target.checked;
-              getTodoStatus(id, e.target.checked);
+              getTodoStatus(id);
               console.log(value);
             }}
             className={language === "FA" ? "mr-4" : ""}

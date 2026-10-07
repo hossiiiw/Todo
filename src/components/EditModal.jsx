@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AppContext } from "../context/ProjectContext";
 
 function EditModal({ todo, onClose }) {
-  const { editTodo } = useContext(AppContext);
+  const { language, editTodo } = useContext(AppContext);
   const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
@@ -80,9 +80,15 @@ function EditModal({ todo, onClose }) {
                        focus:border-app-primary
                        focus:ring-2 focus:ring-app-primary/20"
                 >
-                  <option value="low">کم</option>
-                  <option value="medium">متوسط</option>
-                  <option value="high">زیاد</option>
+                  <option>
+                    {language === "FA" ? "اولویت کم" : "Low priority"}
+                  </option>
+                  <option>
+                    {language === "FA" ? "اولویت متوسط" : "Medium  priority"}
+                  </option>
+                  <option>
+                    {language === "FA" ? "اولویت بالا" : "High  priority"}
+                  </option>
                 </select>
               </div>
 
@@ -99,9 +105,16 @@ function EditModal({ todo, onClose }) {
                        focus:border-app-primary
                        focus:ring-2 focus:ring-app-primary/20"
                 >
-                  <option value="work">کار</option>
-                  <option value="study">مطالعه</option>
-                  <option value="personal">شخصی</option>
+                  <option>{language === "FA" ? " 💼کار" : "Work 💼 "}</option>
+                  <option>
+                    {language === "FA" ? "👤 شخصی" : "Personal 👤"}
+                  </option>
+                  <option>
+                    {language === "FA" ? "📚 مطالعه" : "Study 📚"}
+                  </option>
+                  <option>
+                    {language === "FA" ? "🏃 سلامتی" : "Healthy 🏃"}
+                  </option>
                 </select>
               </div>
             </div>
